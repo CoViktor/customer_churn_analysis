@@ -11,11 +11,45 @@ To test this, performance metrics were logged before and after this implementati
 -  **Classification Report**: This report gives you a breakdown of precision, recall, f1-score, and support for each class.
 -  **Cross Validation**: An additional layer of validation, confirming that the parameters selected indeed perform well across different subsets of the training data.
 
-### Discussion:
-- Best models:
-- On the implementation of SMOTE:
-    - performance difference for each model
+## Discussion:
+### Best Models
+Based on overall test scores, ROC AUC, and F1-scores:
+
+1. **Gradient Boost**: Before SMOTE, this model shows exceptional performance with a test accuracy of 0.968, ROC AUC of 0.992, and a weighted average F1-score of 0.97.
+2. **Random Forest**: Also displays strong performance with a test accuracy of 0.951 and a weighted average F1-score of 0.95 before SMOTE. After SMOTE, its test accuracy is slightly better at 0.956.
+
+### Models Grouped by SMOTE Impact
+**Improved with SMOTE**
+1. **Random Forest** :
+- Test accuracy improved slightly from 0.951 to 0.956.
+- F1-scores and ROC AUC remained stable, indicating robustness in handling the minority class.
+
+**Worsened with SMOTE** 
+1. **K-Nearest Neighbours (KNN)**:
+- Notable decrease in performance after SMOTE: Test score dropped from 0.906 to 0.853.
+- F1-score and recall for the majority class decreased, suggesting potential overfitting to the minority class created by SMOTE.
+2. **Decision Tree**:
+- Test accuracy decreased from 0.938 to 0.92 after SMOTE.
+- F1-score for "Attrited Customer" improved, but overall model accuracy and F1-scores decreased.
+3. **Gradient Boost**:
+- Slight decrease in test accuracy from 0.968 to 0.96 after SMOTE.
+- A decrease in overall performance metrics, although still strong, indicates a minor negative impact from SMOTE.
+4. **Logistic Regression**:
+- Decrease in test accuracy from 0.897 to 0.858 after SMOTE.
+- Despite improvements in recall for "Attrited Customer", the overall accuracy and precision decreased.
+5. **AdaBoost**:
+- Test accuracy slightly decreased from 0.958 to 0.958 (stable, but slight numerical drop in mean accuracy scores).
+- Minor drop in precision and overall ROC AUC, indicating a slight disadvantage with SMOTE.
+
+### Discussion
+- **SMOTE Impact**: Generally, SMOTE tends to improve recall for the minority class at the potential cost of precision and overall accuracy, as observed in several models. This trade-off can be beneficial if the business case prioritizes identifying more of the minority class (Attrited Customers), even at the risk of more false positives (Existing Customers misclassified as Attrited).
+- **Best Model Selection**: Gradient Boost and Random Forest stand out with high overall metrics and robustness to class imbalance, both before and after the introduction of SMOTE. The choice between them would depend on specific performance requirements and computational resources, as Gradient Boost generally takes longer to train.
+- **Highest minority group recall**: Gradient Boost and AdaBoost show the highest minority recall rates. This might be prioritized, since the company is mainly focused on identifying the minority class.
+- **Model Suitability**: The decision on whether to use SMOTE should be based on specific needs for precision vs. recall balance and how sensitive the model is to the introduction of synthetic data. In environments where false positives have high costs, careful calibration of the model's threshold or preference for models less sensitive to SMOTE might be necessary.
+
     
+# Metrics 
+
 ## Logistic regression
 ### No SMOTE
 ```
