@@ -37,6 +37,16 @@ The tested classification models are: AdaBoost, Decision Tree, Gradient Boost, K
 └── README.md
 ```
 
+## ## 🚧 Installation 
+
+1. Clone the repository to your local machine.
+
+2. To run the different models, execute all cells in the relevant notebooks
+
+3. Dependencies can be installed via the following command:
+```
+pip install requirements.txt
+```
 
 ## 📈  Model Metrics Summaries
 All metrics were taken after hyperparameter tuning. Given the imbalanced nature of the target variable, SMOTE was applied to improve model performance. The models were evaluated based on accuracy, ROC AUC, and a comprehensive classification report, including cross-validation to ensure robustness.
@@ -49,6 +59,9 @@ All metrics were taken after hyperparameter tuning. Given the imbalanced nature 
 SMOTE generally improves recall at the cost of precision. Models like Gradient Boost and Random Forest were less affected by SMOTE, showing robustness to class imbalance. The other models decreased on all metrics other than minority group (expired customers) recall. However, since the top priority is to detect this group spicifally, we opt for a model that indeed implements SMOTE.
 
 For more detailed model performance analyzation and the performance metrics for each model, please refer to the `-Model summaries` file.
+
+## The data
+The data used in this project was aquired from Kaggle. Refer to [this Kaggle folder](https://www.kaggle.com/datasets/sakshigoyal7/credit-card-customers) for additional documentation. 
 
 ## ⏱️ Timeline
 This project was completed over the course of three days.
